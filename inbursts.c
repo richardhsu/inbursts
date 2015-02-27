@@ -82,7 +82,6 @@ void processor(u_char *args, const struct pcap_pkthdr* header, const u_char* pac
 {
   const struct ethernet_hdr *ethernet;
   const struct ip_hdr *ip;
-  char dst[16];
 
   ethernet = (struct ethernet_hdr*) (packet);
   ip = (struct ip_hdr*) (packet + SIZE_ETHERNET);
@@ -91,9 +90,7 @@ void processor(u_char *args, const struct pcap_pkthdr* header, const u_char* pac
     return;
   }
 
-  strcpy(dst, inet_ntoa(ip->ip_dst));
-
-  if (strcmp(ip_addr, dst) == 0) {  /* Incoming traffic */
+  if (strcmp(ip_addr, inet_ntoa(ip->ip_dst)) == 0) {  /* Incoming traffic */
     if ((in_tv.tv_sec == header->ts.tv_sec) && ((in_tv.tv_usec / 1000) == (header->ts.tv_usec / 1000))) {
       bytes_in += header->len;
       pkts_in  += 1;
