@@ -1,5 +1,6 @@
 *.o
 *.out
+*.png
 
 # Ignore compiled file
 inbursts
