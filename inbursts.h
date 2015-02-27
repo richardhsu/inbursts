@@ -1,5 +1,5 @@
 /**
- * netlens.h
+ * inbursts.h
  * The following are header definitions. Packet structure definitions are taken
  * from http://www.tcpdump.org/pcap.html.
  */
