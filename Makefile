@@ -9,3 +9,6 @@ inbursts: inbursts.c
 
 clean:
 	rm -f *.o inbursts
+
+fullclean:
+	rm -f *.o inbursts *.png *.out
