@@ -1,0 +1,11 @@
+*.o
+*.out
+
+# Ignore compiled file
+inbursts
+
+# Ignore swap files
+*.swp
+*.swo
+*~
+\#*\#
