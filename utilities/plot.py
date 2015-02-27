@@ -77,8 +77,8 @@ def run(args):
       kbytes_in.append(int(vals[1]) / 1024.0)  # Transform from bytes to kilobytes
       pkts_in.append(int(vals[2]))
 
-  plot(timestamps, kbytes_in, 'Incoming Bandwidth', 'Time Since Start (ms)', 'Bandwidth (kB/ms)', 'bandwidth-cropped.png')
-  plot(timestamps, pkts_in, 'Incoming Packets', 'Time Since Start (ms)', 'Packets (pkts/ms)', 'packets-cropped.png')
+  plot(timestamps, kbytes_in, 'Incoming Bandwidth', 'Time Since Start (ms)', 'Bandwidth (kB/ms)', 'bandwidth-full.png')
+  plot(timestamps, pkts_in, 'Incoming Packets', 'Time Since Start (ms)', 'Packets (pkts/ms)', 'packets-full.png')
 
   tests = []
   if args.min:
@@ -89,8 +89,8 @@ def run(args):
   if len(tests) > 0:
     timestamps, kbytes_in, pkts_in = keep(timestamps, kbytes_in, pkts_in, *tests)
 
-    plot(timestamps, kbytes_in, 'Incoming Bandwidth', 'Time Since Start (ms)', 'Bandwidth (kB/ms)', 'bandwidth-limited.png')
-    plot(timestamps, pkts_in, 'Incoming Packets', 'Time Since Start (ms)', 'Packets (pkts/ms)', 'packets-limited.png')
+    plot(timestamps, kbytes_in, 'Incoming Bandwidth', 'Time Since Start (ms)', 'Bandwidth (kB/ms)', 'bandwidth-cropped.png')
+    plot(timestamps, pkts_in, 'Incoming Packets', 'Time Since Start (ms)', 'Packets (pkts/ms)', 'packets-cropped.png')
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description="Plot In Burst data! Full graph is always generated no matter min or max given.")
