@@ -30,12 +30,12 @@ static FILE *fd;
 
 /* Data */
 static struct timeval in_tv;
-static unsigned long int bytes_in = 0;
-static unsigned long int pkts_in = 0;
-static unsigned long int total_packets = 0;
-static unsigned long int total_pkts_in = 0;
-static unsigned long int max_bytes_in = 0;
-static unsigned long int max_pkts_in = 0;
+static uint64_t bytes_in = 0;
+static uint64_t pkts_in = 0;
+static uint64_t total_packets = 0;
+static uint64_t total_pkts_in = 0;
+static uint64_t max_bytes_in = 0;
+static uint64_t max_pkts_in = 0;
 
 /**
  * record_data
@@ -46,7 +46,7 @@ void record_data(void)
   if (total_pkts_in > 0) {  /* Do not need to record if there wasn't any data. */
     max_bytes_in = max(max_bytes_in, bytes_in);
     max_pkts_in  = max(max_pkts_in, pkts_in);
-    fprintf(fd, "%d%03d,%d,%d\n", in_tv.tv_sec, in_tv.tv_usec / 1000, bytes_in, pkts_in);
+    fprintf(fd, "%ld%03d,%llu,%llu\n", in_tv.tv_sec, in_tv.tv_usec / 1000, bytes_in, pkts_in);
   }
 }
 
@@ -59,8 +59,8 @@ void cleanup(int signo)
   record_data();
 
   fprintf(stderr, "\nCapture completed\n");
-  fprintf(stderr, "Captured %d packets and %d incoming packets\n", total_packets, total_pkts_in);
-  fprintf(stderr, "Maxed at %d bytes/ms in and %d packets/ms in\n", max_bytes_in, max_pkts_in);
+  fprintf(stderr, "Captured %llu packets and %llu incoming packets\n", total_packets, total_pkts_in);
+  fprintf(stderr, "Maxed at %llu bytes/ms in and %llu packets/ms in\n", max_bytes_in, max_pkts_in);
 
   /* Clean up state and exit */
   pcap_freecode(&fp);
