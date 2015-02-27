@@ -77,8 +77,8 @@ def run(args):
       kbytes_in.append(int(vals[1]) / 1024.0)  # Transform from bytes to kilobytes
       pkts_in.append(int(vals[2]))
 
-  plot(timestamps, kbytes_in, 'Incoming Bandwidth', 'Time Since Start (ms)', 'Bandwidth (kB/ms)', 'bandwidth-full.png')
-  plot(timestamps, pkts_in, 'Incoming Packets', 'Time Since Start (ms)', 'Packets (pkts/ms)', 'packets-full.png')
+  plot(timestamps, kbytes_in, 'Incoming Bandwidth', 'Time Since Start (ms)', 'Bandwidth (kB/ms)', 'bandwidth-cropped.png')
+  plot(timestamps, pkts_in, 'Incoming Packets', 'Time Since Start (ms)', 'Packets (pkts/ms)', 'packets-cropped.png')
 
   tests = []
   if args.min:
@@ -93,9 +93,9 @@ def run(args):
     plot(timestamps, pkts_in, 'Incoming Packets', 'Time Since Start (ms)', 'Packets (pkts/ms)', 'packets-limited.png')
 
 if __name__ == "__main__":
-  parser = argparse.ArgumentParser(description="Plot In Burst data!")
+  parser = argparse.ArgumentParser(description="Plot In Burst data! Full graph is always generated no matter min or max given.")
   parser.add_argument('--input', '-i', help='Input filename with CSV data.', default='inbursts.out')
-  parser.add_argument('--min', type=int, help='Limit minimum start timestamp to graph. (Full graph still outputted)')
-  parser.add_argument('--max', type=int, help='Limit maximum start timestamp to graph. (Full graph still outputted)')
+  parser.add_argument('--min', type=int, help='Limit minimum elapsed timestamp to graph.')
+  parser.add_argument('--max', type=int, help='Limit maximum elapsed timestamp to graph.')
   args = parser.parse_args()
   run(args)
