@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-I.
+CFLAGS=-O3 -I.
 DEPS = inbursts.h
 OBJ = inbursts.o
 LIBS = -lpcap

@@ -195,8 +195,8 @@ int main(int argc, char *argv[])
     return(2);
   }
 
-  /* Open the device for sniffing with a 1000ms timeout */
-  handle = pcap_open_live(dev, 100, 1, 1000, errbuf);
+  /* Open the device for sniffing with a 0 timeout to wait for buffered packets */
+  handle = pcap_open_live(dev, 100, 1, 0, errbuf);
   if (handle == NULL) {
     fprintf(stderr, "Couldn't open device %s: %s\n", dev, errbuf);
     return(2);
